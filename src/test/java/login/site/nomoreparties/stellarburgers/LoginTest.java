@@ -30,16 +30,23 @@ public class LoginTest extends BaseTest {
     public void checkBtnInputToAccount(){
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        mainPage.clickButtonInputMainPage()
-         .login(user.getEmail(),user.getPassword());
+
+        mainPage.clickButtonInputMainPage();
+
+         loginPage.login(user.getEmail(),user.getPassword());
+
         Assert.assertTrue(mainPage.checkBtnOrder());
     }
 
-    //тест по кнопке "Личный кабинет"
+    //тест авторизации по кнопке "Личный кабинет"
     @Test
     public void checkBtnPersonaAccount(){
         MainPage mainPage = new MainPage(driver);
-        mainPage.clickButtonPersonalAcc().login(user.getEmail(),user.getPassword());
+        LoginPage loginPage = new LoginPage(driver);
+
+        mainPage.clickButtonPersonalAcc();
+        loginPage.login(user.getEmail(),user.getPassword());
+
         Assert.assertTrue(mainPage.checkBtnOrder());
     }
 

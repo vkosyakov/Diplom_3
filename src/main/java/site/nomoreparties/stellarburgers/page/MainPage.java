@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class MainPage extends BasePage {
+public class MainPage extends BasePage{
     private final By buttonInputMainPage = By.xpath(".//button[text() = 'Войти в аккаунт']");
     private final By buttonPlaceOrder = By.xpath(".//button[text() = 'Оформить заказ']");
 
@@ -14,19 +14,19 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage clickButtonInputMainPage(){
+    public void clickButtonInputMainPage(){
         driver.findElement(buttonInputMainPage).click();
-        return new LoginPage(driver);
     }
 
-    public LoginPage clickButtonPersonalAcc(){
+    public void clickButtonPersonalAcc(){
         driver.findElement(buttonPersonalAcc).click();
-        return new LoginPage(driver);
     }
+
 
     public boolean checkBtnOrder(){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(buttonPlaceOrder)).isEnabled();
     }
+
 
 
 }
