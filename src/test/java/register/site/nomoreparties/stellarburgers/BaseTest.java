@@ -9,13 +9,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
     protected WebDriver driver;
-    private final String URL_REGISTER = "https://stellarburgers.nomoreparties.site/register";
+    //private final String URL_REGISTER = "https://stellarburgers.nomoreparties.site/register";
 
     @Before
     public void setUp() {
         String browser = System.getenv("BROWSER");
         driver = getDriver(browser == null ? "chrome" : browser);
-        driver.get(URL_REGISTER);
+        //driver.get(URL_REGISTER);
     }
 
     @After

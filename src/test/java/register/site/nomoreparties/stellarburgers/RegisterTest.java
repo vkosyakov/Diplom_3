@@ -24,6 +24,7 @@ public class RegisterTest extends BaseTest{
     public void createTestData(){
         userClient = new UserClient();
         user = UserGenerator.withAllData();
+        driver.get("https://stellarburgers.nomoreparties.site/register");
     }
 
     //Успешная регистрация пользователя
