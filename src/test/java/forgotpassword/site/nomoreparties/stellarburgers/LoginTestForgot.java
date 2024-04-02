@@ -1,4 +1,4 @@
-package login.site.nomoreparties.stellarburgers;
+package forgotpassword.site.nomoreparties.stellarburgers;
 
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -6,44 +6,27 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import register.site.nomoreparties.stellarburgers.BaseTest;
-import site.nomoreparties.stellarburgers.page.LoginPage;
 import site.nomoreparties.stellarburgers.page.MainPage;
+import site.nomoreparties.stellarburgers.page.RegisterPage;
 import userAPI.User;
 import userAPI.UserClient;
 import userAPI.UserCredentials;
 import userAPI.UserGenerator;
 
-public class LoginTest extends BaseTest {
+public class LoginTestForgot extends BaseTest {
     private UserClient userClient;
     private User user;
     private String token;
+
+    //создание данных для теста
     @Before
     public void createTestData(){
         userClient = new UserClient();
         user = UserGenerator.withAllData();
-        userClient.create(user);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
     }
 
-    //тест авторизации по кнопке "Войти в аккаунт"
-    @Test
-    public void checkBtnInputToAccount(){
-        MainPage mainPage = new MainPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-        mainPage.clickButtonInputMainPage()
-         .login(user.getEmail(),user.getPassword());
-        Assert.assertTrue(mainPage.checkBtnOrder());
-    }
-
-    //тест по кнопке "Личный кабинет"
-    @Test
-    public void checkBtnPersonaAccount(){
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickButtonPersonalAcc().login(user.getEmail(),user.getPassword());
-        Assert.assertTrue(mainPage.checkBtnOrder());
-    }
-
-
+    //Удаление данных после теста
     @After
     public void cleanUp(){
         ValidatableResponse response =
@@ -57,4 +40,13 @@ public class LoginTest extends BaseTest {
         }
     }
 
+    //проверка авторизации из формы восстановления пароля
+    @Test
+    public void checkAuthOnFormRegistration(){
+        userClient.create(user);
+        RegisterPage registerPage = new RegisterPage(driver);
+        MainPage mainPage = new MainPage(driver);
+        registerPage.cliclHrefInput().login(user.getEmail(),user.getPassword());
+        Assert.assertTrue(mainPage.checkBtnOrder());
+    }
 }

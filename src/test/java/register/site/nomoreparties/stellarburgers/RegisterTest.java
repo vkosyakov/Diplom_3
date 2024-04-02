@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import site.nomoreparties.stellarburgers.page.LoginPage;
+import site.nomoreparties.stellarburgers.page.MainPage;
 import site.nomoreparties.stellarburgers.page.RegisterPage;
 import userAPI.User;
 import userAPI.UserClient;
@@ -43,6 +44,16 @@ public class RegisterTest extends BaseTest{
         user.setPassword(faker.internet().password(1,5));
         RegisterPage registerPage = new RegisterPage(driver);
         Assert.assertTrue(registerPage.registerUser(user.getName(),user.getEmail(),user.getPassword()).checkLabelFailePass());
+    }
+
+    // тест авторизации через форму регистрации
+    @Test
+    public void checkAuthOnFormRegistration(){
+        userClient.create(user);
+        RegisterPage registerPage = new RegisterPage(driver);
+        MainPage mainPage = new MainPage(driver);
+        registerPage.cliclHrefInput().login(user.getEmail(),user.getPassword());
+        Assert.assertTrue(mainPage.checkBtnOrder());
     }
 
     //Удаление пользователя после теста
