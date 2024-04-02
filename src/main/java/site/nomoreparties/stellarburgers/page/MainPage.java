@@ -10,6 +10,8 @@ public class MainPage extends BasePage{
 
     private final By buttonPersonalAcc = By.xpath(".//p[text() = 'Личный Кабинет']");
 
+    private final By labelAssembleTheBurger = By.xpath(".//h1[text() = 'Соберите бургер']");
+
     public MainPage(WebDriver driver) {
         super(driver);
     }
@@ -25,6 +27,10 @@ public class MainPage extends BasePage{
 
     public boolean checkBtnOrder(){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(buttonPlaceOrder)).isEnabled();
+    }
+
+    public String getTextLabel(){
+        return driver.findElement(labelAssembleTheBurger).getText();
     }
 
 

@@ -41,6 +41,8 @@ public class TransitionTest extends BaseTest {
 
     @Test
     public void checkTransitionPersonalAccount(){
+
+
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         PersonalAccountPage personalAccountPage = new PersonalAccountPage(driver);
@@ -49,9 +51,17 @@ public class TransitionTest extends BaseTest {
         loginPage.login(user.getEmail(),user.getPassword());
         Assert.assertTrue(mainPage.checkBtnOrder());
 
+        //переход в личный кабиент
         mainPage.clickButtonPersonalAcc();
-        //Проверка нажписи профиль
+        //Проверка надписи профиль
         Assert.assertEquals("Профиль", personalAccountPage.getLabel());
 
+        personalAccountPage.clickConstructor();
+        Assert.assertEquals("Соберите бургер",mainPage.getTextLabel());
+
+
+
     }
+
+
 }
