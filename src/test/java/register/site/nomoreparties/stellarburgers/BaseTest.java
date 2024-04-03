@@ -15,7 +15,6 @@ public class BaseTest {
     public void setUp() {
         String browser = System.getenv("BROWSER");
         driver = getDriver(browser == null ? "chrome" : browser);
-        //driver.get(URL_REGISTER);
     }
 
     @After

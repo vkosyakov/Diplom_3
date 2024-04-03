@@ -38,6 +38,7 @@ public class RegisterTest extends BaseTest{
         Assert.assertTrue(loginPage.checkLabelInput());
     }
 
+    //тест с неверным паролем
     @Test
     public void testFailedPassword(){
         Faker faker = new Faker();

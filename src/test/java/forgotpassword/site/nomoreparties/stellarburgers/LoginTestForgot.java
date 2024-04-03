@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import register.site.nomoreparties.stellarburgers.BaseTest;
+import site.nomoreparties.stellarburgers.page.ForgotPasswordPage;
+import site.nomoreparties.stellarburgers.page.LoginPage;
 import site.nomoreparties.stellarburgers.page.MainPage;
 import site.nomoreparties.stellarburgers.page.RegisterPage;
 import userAPI.User;
@@ -44,9 +46,11 @@ public class LoginTestForgot extends BaseTest {
     @Test
     public void checkAuthOnFormRegistration(){
         userClient.create(user);
-        RegisterPage registerPage = new RegisterPage(driver);
         MainPage mainPage = new MainPage(driver);
-        registerPage.cliclHrefInput().login(user.getEmail(),user.getPassword());
+        ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
+
+        forgotPasswordPage.cliclHrefInput().login(user.getEmail(),user.getPassword());
+
         Assert.assertTrue(mainPage.checkBtnOrder());
     }
 }
