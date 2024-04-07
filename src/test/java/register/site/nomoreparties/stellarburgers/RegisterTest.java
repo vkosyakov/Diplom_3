@@ -2,6 +2,7 @@ package register.site.nomoreparties.stellarburgers;
 
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -28,8 +29,9 @@ public class RegisterTest extends BaseTest{
         driver.get("https://stellarburgers.nomoreparties.site/register");
     }
 
-    //Успешная регистрация пользователя
+
     @Test
+    @Description("Успешная авторизация пользователя")
     public void testSuccessfulRegistration(){
        //проверяем что после регистрации появляется надпись "Вход"
         RegisterPage registerPage = new RegisterPage(driver);
@@ -38,8 +40,8 @@ public class RegisterTest extends BaseTest{
         Assert.assertTrue(loginPage.checkLabelInput());
     }
 
-    //тест с неверным паролем
     @Test
+    @Description("Авторизация с неверным паролем")
     public void testFailedPassword(){
         Faker faker = new Faker();
         user.setPassword(faker.internet().password(1,5));
@@ -47,8 +49,9 @@ public class RegisterTest extends BaseTest{
         Assert.assertTrue(registerPage.registerUser(user.getName(),user.getEmail(),user.getPassword()).checkLabelFailePass());
     }
 
-    // тест авторизации через форму регистрации
+
     @Test
+    @Description("Проверка авторизации через кнопку в форме регистрации")
     public void checkAuthOnFormRegistration(){
         userClient.create(user);
         RegisterPage registerPage = new RegisterPage(driver);

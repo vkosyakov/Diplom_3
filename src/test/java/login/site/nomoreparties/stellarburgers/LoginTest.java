@@ -1,5 +1,6 @@
 package login.site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -25,8 +26,8 @@ public class LoginTest extends BaseTest {
         driver.get("https://stellarburgers.nomoreparties.site/");
     }
 
-    //тест авторизации по кнопке "Войти в аккаунт"
     @Test
+    @Description("Проверка авторизации по кнопке «Войти в аккаунт» на главной")
     public void checkBtnInputToAccount(){
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -38,7 +39,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(mainPage.checkBtnOrder());
     }
 
-    //тест авторизации по кнопке "Личный кабинет"
+    @Description("Проверка авторизации через кнопку «Личный кабинет»")
     @Test
     public void checkBtnPersonaAccount(){
         MainPage mainPage = new MainPage(driver);

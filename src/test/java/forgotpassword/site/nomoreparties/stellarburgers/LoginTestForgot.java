@@ -1,6 +1,7 @@
 package forgotpassword.site.nomoreparties.stellarburgers;
 
 import io.restassured.response.ValidatableResponse;
+import jdk.jfr.Description;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,8 +43,8 @@ public class LoginTestForgot extends BaseTest {
         }
     }
 
-    //проверка авторизации из формы восстановления пароля
     @Test
+    @Description("Проверка авторизации через кнопку в форме восстановления пароля")
     public void checkAuthOnFormRegistration(){
         userClient.create(user);
         MainPage mainPage = new MainPage(driver);

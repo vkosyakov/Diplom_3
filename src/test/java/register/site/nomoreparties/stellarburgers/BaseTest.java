@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
     protected WebDriver driver;
-    //private final String URL_REGISTER = "https://stellarburgers.nomoreparties.site/register";
 
     @Before
     public void setUp() {

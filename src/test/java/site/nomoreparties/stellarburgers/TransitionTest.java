@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,7 +17,6 @@ import userAPI.UserCredentials;
 import userAPI.UserGenerator;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class TransitionTest extends BaseTest {
     private UserClient userClient;
@@ -42,6 +42,7 @@ public class TransitionTest extends BaseTest {
     }
 // переход в конструкртор из личного кабинета по кнопке "Конструктор"
     @Test
+    @Description("Переход по клику на «Конструктор»")
     public void checkTransitionPersonalAccountByConstructor(){
         userClient = new UserClient();
         user = UserGenerator.withAllData();
@@ -65,6 +66,7 @@ public class TransitionTest extends BaseTest {
     }
     // переход в конструкртор из личного кабинета по логотипу
     @Test
+    @Description("Переход по клику на логотип Stellar Burgers")
     public void checkTransitionPersonalAccountByLogo(){
         userClient = new UserClient();
         user = UserGenerator.withAllData();
@@ -88,6 +90,7 @@ public class TransitionTest extends BaseTest {
     }
 
     @Test
+    @Description("Переход в личный кабинет и выход по кнопке «Выйти» в личном кабинете")
     public void checkLogOutPersonalAccount(){
         userClient = new UserClient();
         user = UserGenerator.withAllData();
@@ -101,37 +104,27 @@ public class TransitionTest extends BaseTest {
         loginPage.login(user.getEmail(),user.getPassword());
         Assert.assertTrue(mainPage.checkBtnOrder());
 
-        //переход в личный кабиент
+        //проверка перехода в личный кабиент
         mainPage.clickButtonPersonalAcc();
-        //Проверка надписи профиль
         Assert.assertEquals("Профиль", personalAccountPage.getLabel());
+
         //Выход из личного кабинета проверка надписи "Вход"
         personalAccountPage.clickBtnLogOut();
         Assert.assertTrue(loginPage.checkLabelInput());
     }
 
     @Test
-    public void checkTransitionIngredients(){
+    @Description("Проверка перехода на ингредиент Булки")
+    public void transitionTestBuns(){
         MainPage mainPage = new MainPage(driver);
-
         List<WebElement> elements = mainPage.getIngredientsHeader();
-        String classNameSelected = "tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect";
-
-           for(int i = 2; i == 0; i--){
-               elements.get(i).click();
-               Assert.assertEquals(elements.get(i).getAttribute("class"),classNameSelected);
-           }
-       }
-
-
-
-
-
-
-
-
-
+        elements.get(2).click();
+        elements.get(0).click();
+        Assert.assertEquals(elements.get(0).getAttribute("class"),"tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
     }
+
+
+}
 
 
 
