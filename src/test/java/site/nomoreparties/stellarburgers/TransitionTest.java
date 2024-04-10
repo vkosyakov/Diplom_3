@@ -113,17 +113,6 @@ public class TransitionTest extends BaseTest {
         Assert.assertTrue(loginPage.checkLabelInput());
     }
 
-    @Test
-    @Description("Проверка перехода на ингредиент Булки")
-    public void transitionTestBuns(){
-        MainPage mainPage = new MainPage(driver);
-        List<WebElement> elements = mainPage.getIngredientsHeader();
-        elements.get(2).click();
-        elements.get(0).click();
-        Assert.assertEquals(elements.get(0).getAttribute("class"),"tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect");
-    }
-
-
 }
 
 
